@@ -59,5 +59,7 @@
     <string name="chart_description">USD over time</string>
     <!--Date formart on chart Month/Day (US standard)-->
     <string name="date_format">MM/dd</string>
+    <string name="widget_title">Stock Hawk</string>
+    <string name="stock_hawk_icon">Stock Hawk Icon</string>
 
 </resources>

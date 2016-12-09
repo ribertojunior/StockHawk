@@ -54,7 +54,7 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
         View rootView = inflater.inflate(R.layout.fragment_history, container, false);
         mChart = (LineChart) rootView.findViewById(R.id.chart);
         mChart.setDescription(getString(R.string.chart_description));
-        int color = getResources().getColor(R.color.white);
+        int color = getResources().getColor(android.R.color.black);
         mChart.setDescriptionColor(color);
         mChart.setDescriptionTextSize(16);
         //
@@ -118,8 +118,8 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
                 x++;
             }
             LineDataSet dataSet = new LineDataSet(entries, Contract.Quote.getStockFromUri(mSymbolUri));
-            dataSet.setColors(new int[]{R.color.white}, getContext());
-            dataSet.setValueTextColor(getResources().getColor(R.color.white));
+            dataSet.setColors(new int[]{R.color.colorPrimaryDark}, getContext());
+            dataSet.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
 
             LineData lineData = new LineData(xValues, dataSet);

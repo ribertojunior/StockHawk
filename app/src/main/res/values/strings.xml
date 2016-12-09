@@ -55,7 +55,9 @@
     <!--Floating button description-->
     <string name="add_a_stock">Add a stock</string>
 
-
-    <string name="chart_description">Days ago x USD</string>
+    <!-- History Chart description-->
+    <string name="chart_description">USD over time</string>
+    <!--Date formart on chart Month/Day (US standard)-->
+    <string name="date_format">MM/dd</string>
 
 </resources>

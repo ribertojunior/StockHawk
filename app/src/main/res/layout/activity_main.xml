@@ -33,10 +33,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center_horizontal"
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:textColor="@color/white"
             app:layout_anchor="@id/recycler_view"
-            app:layout_anchorGravity="fill"
+            app:layout_anchorGravity="center_horizontal"
             tools:text="Error message" />
 
 

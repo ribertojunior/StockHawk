@@ -24,6 +24,7 @@ import com.udacity.stockhawk.data.Contract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -94,9 +95,9 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
         if (data.moveToFirst()) {
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<String> xValues = new ArrayList<>();
+            String[] strings;
             String history = data.getString(COL_HISTORY_ID);
             String value;
-            long date;
             StringTokenizer tokenizer = new StringTokenizer(history, "\n");
             int x = 0;
             Time dayTime = new Time();
@@ -108,15 +109,19 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             // now we work exclusively in UTC
             dayTime = new Time();
             long day;
+            int count = tokenizer.countTokens() - 1;
+            strings = new String[count+1];
             SimpleDateFormat monthDayFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.US);
             while (tokenizer.hasMoreTokens()){
                 value = tokenizer.nextToken();
-                day = dayTime.setJulianDay(julianStartDay + x);
-                xValues.add(monthDayFormat.format(day));
+                day = dayTime.setJulianDay(julianStartDay - x);
+                //xValues.add(count - x, monthDayFormat.format(day));
+                strings[count - x] = monthDayFormat.format(day);
                 value = value.split(",")[1];
-                entries.add(new Entry(Float.parseFloat(value), x));
-                x++;
+                entries.add(new Entry(Float.parseFloat(value), x));                x++;
+
             }
+            xValues = new ArrayList<>(Arrays.asList(strings));
             LineDataSet dataSet = new LineDataSet(entries, Contract.Quote.getStockFromUri(mSymbolUri));
             dataSet.setColors(new int[]{R.color.colorPrimaryDark}, getContext());
             dataSet.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));

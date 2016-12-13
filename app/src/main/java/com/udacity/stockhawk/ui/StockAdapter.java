@@ -20,7 +20,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
     final private Context context;
     final private DecimalFormat dollarFormatWithPlus;
@@ -103,7 +103,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
     }
 
 
-    interface StockAdapterOnClickHandler {
+    public interface StockAdapterOnClickHandler {
         void onClick(String symbol);
     }
 

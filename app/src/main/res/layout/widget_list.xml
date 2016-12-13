@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/widget"
         android:background="@color/colorPrimary">
         <ImageView
             android:layout_width="@dimen/list_icon"
             android:layout_height="@dimen/list_icon"
             android:contentDescription="@string/stock_hawk_icon"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/hawk_logo"
              />
 
         <ImageView
@@ -23,5 +25,23 @@
             android:contentDescription="@string/app_name"
             />
     </LinearLayout>
-
+    <ListView
+        android:id="@+id/widget_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        tools:listitem="@layout/widget_list_item"
+        />
+    <!-- empty list -->
+    <TextView
+        android:id="@+id/widget_listview_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearance"
+        android:text="@string/error_no_stocks"
+        tools:ignore="UnusedAttribute"
+        />
 </LinearLayout>

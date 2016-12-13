@@ -48,18 +48,24 @@
     <!--Erro message when the app got no stock added-->
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
-    <!--Added Stock success message-->
+    <!--Added Stock message-->
+    <string name="stock_added">Symbol %s added.</string>
+    <!--Added Stock message but with no connectivity-->
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <!-- No connectivity message-->
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <!--Floating button description-->
     <string name="add_a_stock">Add a stock</string>
 
+
     <!-- History Chart description-->
     <string name="chart_description">USD over time</string>
     <!--Date formart on chart Month/Day (US standard)-->
     <string name="date_format">MM/dd</string>
-    <string name="widget_title">Stock Hawk</string>
+    <!-- Widget title, same as app name-->
+    <string name="widget_title" translatable="false">@string/app_name</string>
+
+    <!--Stock Hawk Icon Description-->
     <string name="stock_hawk_icon">Stock Hawk Icon</string>
 
 </resources>

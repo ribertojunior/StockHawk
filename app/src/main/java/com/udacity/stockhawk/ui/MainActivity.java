@@ -95,10 +95,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 String symbol = adapter.getSymbolAtPosition(viewHolder.getAdapterPosition());
-                PrefUtils.removeStock(MainActivity.this, symbol);
-                getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
-                Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-                sendBroadcast(dataUpdatedIntent);
+                int del = getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
+                if (del>0) {
+                    PrefUtils.removeStock(MainActivity.this, symbol);
+                    QuoteSyncJob.syncImmediately(getApplicationContext());
+                    Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED).setPackage(getPackageName());
+                    sendBroadcast(dataUpdatedIntent);
+                }else {
+                    String msg = getString(R.string.stock_deleted_error, symbol);
+                    Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
             }
         }).attachToRecyclerView(recyclerView);
 

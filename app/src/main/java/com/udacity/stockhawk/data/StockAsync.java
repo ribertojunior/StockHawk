@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -21,24 +22,24 @@ import yahoofinance.YahooFinance;
 
 public class StockAsync extends AsyncTask<String, Void, String> {
     private Context mContext;
-
+    private String mSymbol;
     public StockAsync(Context mContext) {
         this.mContext = mContext;
     }
 
     @Override
     protected String doInBackground(String[] params) {
-        String symbol = params[0];
-        String ret = mContext.getString(R.string.error_stock_not_found, symbol);
-        if (symbol != null && !symbol.isEmpty()) {
+        mSymbol = params[0];
+        String ret = mContext.getString(R.string.error_stock_not_found, mSymbol);
+        if (mSymbol != null && !mSymbol.isEmpty()) {
 
             try {
-                Stock stock = YahooFinance.get(symbol);
+                Stock stock = YahooFinance.get(mSymbol);
                 if (stock != null) {
 
                     if (!stock.toString().split(":")[1].trim().equals("null")) {
-                        ret = mContext.getString(R.string.stock_added, symbol);
-                        PrefUtils.addStock(mContext, symbol);
+                        ret = mContext.getString(R.string.stock_added, mSymbol);
+                        PrefUtils.addStock(mContext, mSymbol);
                         QuoteSyncJob.syncImmediately(mContext);
                     }
 
@@ -55,5 +56,10 @@ public class StockAsync extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String ret) {
         Toast.makeText(mContext, ret, Toast.LENGTH_SHORT).show();
+        if (ret.equals(mContext.getString(R.string.stock_added, mSymbol))) {
+            QuoteSyncJob.syncImmediately(mContext);
+            Intent dataUpdatedIntent = new Intent(QuoteSyncJob.ACTION_DATA_UPDATED).setPackage(mContext.getPackageName());
+            mContext.sendBroadcast(dataUpdatedIntent);
+        }
     }
 }

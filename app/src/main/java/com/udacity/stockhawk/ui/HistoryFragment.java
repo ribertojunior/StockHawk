@@ -12,6 +12,7 @@ import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -35,14 +36,17 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
     private Uri mSymbolUri;
 
     LineChart mChart;
+    TextView  mStockName;
 
 
     private static final String[] HISTORY_COLUMNS ={
             Contract.Quote.COLUMN_SYMBOL,
+            Contract.Quote.COLUMN_SYMBOL_NAME,
             Contract.Quote.COLUMN_HISTORY
     };
     static final int COL_SYMBOL_ID = 0;
-    static final int COL_HISTORY_ID = 1;
+    static final int COL_SYMBOL_NAME = 1;
+    static final int COL_HISTORY_ID = 2;
 
     public HistoryFragment() {
     }
@@ -53,6 +57,9 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
         Bundle args = getArguments();
         mSymbolUri = args.getParcelable(SYMBOL_URI);
         View rootView = inflater.inflate(R.layout.fragment_history, container, false);
+
+        mStockName = (TextView) rootView.findViewById(R.id.stock_name);
+
         mChart = (LineChart) rootView.findViewById(R.id.chart);
         mChart.setDescription(getString(R.string.chart_description));
         int color = getResources().getColor(android.R.color.black);
@@ -93,6 +100,8 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
         if (data.moveToFirst()) {
+            String stockName = data.getString(COL_SYMBOL_NAME);
+            mStockName.setText(stockName);
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<String> xValues = new ArrayList<>();
             String[] strings;

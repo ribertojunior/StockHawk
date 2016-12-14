@@ -21,8 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height"
                 android:id="@+id/toolbar"
-                app:theme="@style/Toolbar"
-                app:layout_scrollFlags="scroll|enterAlways">
+                app:theme="@style/Toolbar">
 
                 <ImageView
                     android:layout_width="wrap_content"

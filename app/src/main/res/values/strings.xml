@@ -50,6 +50,8 @@
 
     <!--Added Stock message-->
     <string name="stock_added">Symbol %s added.</string>
+    <!--Delete Stock error message-->
+    <string name="stock_deleted_error">Error. %s not deleted.</string>
     <!--Added Stock message but with no connectivity-->
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <!-- No connectivity message-->
@@ -61,7 +63,7 @@
     <!-- History Chart description-->
     <string name="chart_description">USD over time</string>
     <!--Date formart on chart Month/Day (US standard)-->
-    <string name="date_format">MM/dd</string>
+    <string name="date_format" translatable="false">MM/dd</string>
     <!-- Widget title, same as app name-->
     <string name="widget_title" translatable="false">@string/app_name</string>
 

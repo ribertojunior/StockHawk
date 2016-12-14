@@ -59,12 +59,12 @@ public class StockHawkRemoteViewsService extends RemoteViewsService {
                 if (mCursor != null) {
                     mCursor.close();
                 }
-                final long indentifyToken = Binder.clearCallingIdentity();
+                final long identifyToken = Binder.clearCallingIdentity();
                 mCursor = getContentResolver().query(
                         Contract.Quote.uri,
                         Contract.Quote.QUOTE_COLUMNS,
                         null, null, Contract.Quote.COLUMN_SYMBOL);
-                Binder.restoreCallingIdentity(indentifyToken);
+                Binder.restoreCallingIdentity(identifyToken);
             }
 
             @Override

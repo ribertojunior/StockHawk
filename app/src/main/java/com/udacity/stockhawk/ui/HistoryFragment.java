@@ -65,6 +65,8 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
         int color = getResources().getColor(android.R.color.black);
         mChart.setDescriptionColor(color);
         mChart.setDescriptionTextSize(16);
+        mChart.setDrawBorders(true);
+        mChart.setBorderColor(R.color.colorPrimaryDark);
         //
         mChart.getLegend().setTextColor(color);
 
@@ -103,8 +105,9 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             String stockName = data.getString(COL_SYMBOL_NAME);
             mStockName.setText(stockName);
             ArrayList<Entry> entries = new ArrayList<>();
-            ArrayList<String> xValues = new ArrayList<>();
-            String[] strings;
+            ArrayList<String> xValues;
+            String[] xStrings;
+            Entry[] yFloats;
             String history = data.getString(COL_HISTORY_ID);
             String value;
             StringTokenizer tokenizer = new StringTokenizer(history, "\n");
@@ -119,18 +122,22 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             dayTime = new Time();
             long day;
             int count = tokenizer.countTokens() - 1;
-            strings = new String[count+1];
+            xStrings = new String[count+1];
+            yFloats = new Entry[count+1];
             SimpleDateFormat monthDayFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.US);
             while (tokenizer.hasMoreTokens()){
                 value = tokenizer.nextToken();
                 day = dayTime.setJulianDay(julianStartDay - x);
                 //xValues.add(count - x, monthDayFormat.format(day));
-                strings[count - x] = monthDayFormat.format(day);
+                xStrings[count - x] = monthDayFormat.format(day);
                 value = value.split(",")[1];
-                entries.add(new Entry(Float.parseFloat(value), x));                x++;
+                //yFloats[count - x] = new Entry(Float.parseFloat(value), x);
+                entries.add(new Entry(Float.parseFloat(value), count - x));
+                x++;
 
             }
-            xValues = new ArrayList<>(Arrays.asList(strings));
+            xValues = new ArrayList<>(Arrays.asList(xStrings));
+            //entries = new ArrayList<>()
             LineDataSet dataSet = new LineDataSet(entries, Contract.Quote.getStockFromUri(mSymbolUri));
             dataSet.setColors(new int[]{R.color.colorPrimaryDark}, getContext());
             dataSet.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));

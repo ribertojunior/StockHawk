@@ -30,12 +30,9 @@ import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.data.StockAsync;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
-import yahoofinance.YahooFinance;
 
 import static com.udacity.stockhawk.sync.QuoteSyncJob.ACTION_DATA_UPDATED;
 

@@ -4,27 +4,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-import android.widget.TextView;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.ui.HistoryActivity;
-import com.udacity.stockhawk.ui.StockAdapter;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import timber.log.Timber;
 
 /**

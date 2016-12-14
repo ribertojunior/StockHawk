@@ -49,7 +49,7 @@
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
     <!--Added Stock message-->
-    <string name="stock_added">Symbol %s added. Updating...</string>
+    <string name="stock_added">Symbol %s added. Updating…</string>
     <!--Delete Stock error message-->
     <string name="stock_deleted_error">Error. %s not deleted.</string>
     <!--Added Stock message but with no connectivity-->

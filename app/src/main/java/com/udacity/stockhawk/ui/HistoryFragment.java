@@ -107,7 +107,7 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<String> xValues;
             String[] xStrings;
-            Entry[] yFloats;
+            //Entry[] yFloats;
             String history = data.getString(COL_HISTORY_ID);
             String value;
             StringTokenizer tokenizer = new StringTokenizer(history, "\n");
@@ -123,7 +123,7 @@ public class HistoryFragment extends Fragment implements LoaderManager.LoaderCal
             long day;
             int count = tokenizer.countTokens() - 1;
             xStrings = new String[count+1];
-            yFloats = new Entry[count+1];
+            //yFloats = new Entry[count+1];
             SimpleDateFormat monthDayFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.US);
             while (tokenizer.hasMoreTokens()){
                 value = tokenizer.nextToken();

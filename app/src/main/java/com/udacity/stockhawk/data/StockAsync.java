@@ -9,8 +9,6 @@ import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 import yahoofinance.Stock;
